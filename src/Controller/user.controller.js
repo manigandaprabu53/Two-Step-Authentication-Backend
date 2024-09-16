@@ -16,7 +16,7 @@ const signupUser = async(req, res)=>{
             req.body.tokenExpiry = Date.now() + 24 * 3600 * 1000;
             console.log("Token Expiry: "+req.body.tokenExpiry)
             await userModel.create(req.body);
-            let link = `http://localhost:8000/users/activateAccount/${req.body.token}`;
+            let link = `https://two-step-authentication-backend.onrender.com/users/activateAccount/${req.body.token}`;
 
             const transporter = nodemailer.createTransport({
                 service: 'Gmail',
@@ -121,7 +121,7 @@ const forgotPassword = async(req, res)=>{
                 to: user.email,
                 from: 'passwordreset@demo.com',
                 subject: 'Password Reset',
-                text: `You are receiving this because you (or someone else) have requested the reset of the password for your account.\n\n Please click on the following link, or paste this into your browser to complete the process:\n\n http://localhost:5173/resetPassword/${user.token}\n\n  If you did not request this, please ignore this email and your password will remain unchanged.\n`
+                text: `You are receiving this because you (or someone else) have requested the reset of the password for your account.\n\n Please click on the following link, or paste this into your browser to complete the process:\n\n https://twostepauthentication.netlify.app/resetPassword/${user.token}\n\n  If you did not request this, please ignore this email and your password will remain unchanged.\n`
             }
 
             transporter.sendMail(mailOptions, (err)=>{
