@@ -11,7 +11,7 @@ const shortenURL = async (req, res)=>{
         }
         else{
             const shortId = nanoid(8);
-            const shortUrl = `http://localhost:${config.PORT}/redirect/${shortId}`
+            const shortUrl = `https://two-step-authentication-backend.onrender.com/redirect/${shortId}`
             let data = {longUrl: longUrl, shortUrl: shortId}
             await urlModel.create(data);
             res.status(201).send({message: "Short URL Created", ShortURL: shortUrl})
