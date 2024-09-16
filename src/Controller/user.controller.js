@@ -75,7 +75,7 @@ const loginUser = async(req, res)=>{
         let {email, password} = req.body;
         let user = await userModel.findOne({email: email});
         console.log(password)
-        if(user){
+        if(user && user.active){
             if(await auth.compareHash(password, user.password)){
                 console.log("Password Matched")
                 const token = auth.createToken({
